@@ -33,7 +33,7 @@ public class LoginAction3_5_2 implements Action
 
 	//password属性的setter和getter方法
 	public void setPassword(String password)
-	{
+	{  
 		this.password = password;
 	}
 	public String getPassword()
