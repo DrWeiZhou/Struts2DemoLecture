@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<constant name="struts.devMode" value="true"/>
+	<constant name="struts.enable.DynamicMethodInvocation" value="true"></constant>
+	<package name="zw" namespace="" abstract="" extends="">
+	
+	</package>
+	<package name="lee" extends="struts-default">
+		<action name="xlogin"
+			class="org.crazyit.app.action.LoginAction">
+			<result name="input">/login.jsp</result>
+			<result name="success" type="chain">hello</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		
+		<action name="login3_5_2"
+			class="org.crazyit.app.action.LoginAction3_5_2">
+			<!-- 如果处理结果返回error，对应/error.jsp视图资源 -->
+			<result name="error">/error.jsp</result>
+			<!-- 如果处理结果返回success，对应/welcome.jsp视图资源 -->
+			<result name="success" >/welcome3_5_2.jsp</result>
+		</action>
+		
+			
+		<action name="login3_5_3"
+			class="org.crazyit.app.action.LoginAction3_5_3">
+			<!-- 如果处理结果返回error，对应/error.jsp视图资源 -->
+			<result name="error">/error.jsp</result>
+			<!-- 如果处理结果返回success，对应/welcome.jsp视图资源 -->
+			<result name="success">/welcome3_5_3.jsp</result>
+		</action>
+		
+		<action name="dmilogin" class="org.crazyit.app.action.LoginRegistAction">
+			<result name="error">/error.jsp</result>
+			<result name="success">/welcome.jsp</result>		
+		</action>
+		
+		<!-- 配置login Action，处理类为LoginRegistAction
+			默认使用execute方法处理请求-->
+		<action name="methodlogin" class="org.crazyit.app.action.LoginRegistAction">
+			<!-- 定义逻辑视图和物理视图之间的映射关系 -->
+			<result name="input">/login.jsp</result>
+			<result name="error">/error.jsp</result>
+			<result name="success">/welcome.jsp</result>
+		</action>
+		<!-- 配置regist Action，处理类为LoginRegistAction
+			指定使用regist方法处理请求-->
+		<action name="methodregist" class="org.crazyit.app.action.LoginRegistAction"
+			method="regist">
+			<!-- 定义逻辑视图和物理视图之间的映射关系 -->
+			<result name="input">/login.jsp</result>
+			<result name="error">/error.jsp</result>
+			<result name="success">/welcome.jsp</result>
+		</action>
+		
+		
+		
+		
+		
+		<action name="ognlAction" class="org.crazyit.app.action.OGNLAction">
+			<result name="success">/ognlexpression.jsp</result>
+		</action>
+		
+		
+		<!-- 使用模式字符串定义Action的name，指定所有以Action结尾的请求，
+		都可用LoginRegistAction来处理，method属性使用{1}，
+		这个{1}代表进行模式匹配时第一个*所代替的字符串 -->
+		<action name="*Action" class="org.crazyit.app.action.LoginRegistAction"
+			method="{1}">
+			<!-- 定义逻辑视图和物理视图之间的映射关系 -->
+			<result name="input">/login.jsp</result>
+			<result name="error">/error.jsp</result>
+			<result name="success">/welcome.jsp</result>
+		</action>
+		
+		
+		<!-- 使用模式字符串定义Action的name，指定所有以Action结尾的请求，
+		都可用{1}Action来处理，
+		这个{1}代表进行模式匹配时第一个*所代替的字符串 -->
+		<action name="*action" class="org.crazyit.app.action.{1}Action">
+			<!-- 定义逻辑视图和物理视图之间的映射关系 -->
+			<result name="input">/login.jsp</result>
+			<result name="error">/error.jsp</result>
+			<result name="success">/welcome.jsp</result>
+		</action>
+		
+		
+		
+		
+		<action name="OGNLFirst" class="org.crazyit.app.action.OGNLFirstAction">
+			<result>/ognlFirstResult.jsp</result>
+		</action>
+		
+		<action name="hello" class="qtech.edu.cn.HelloAction">
+			<result>/welcome.jsp</result>
+		</action>
+		
+		
+		<action name="MyAction" class="org.crazyit.app.action.MyAction">
+			<!-- 配置Result，使用OGNL表达式来指定视图资源 -->
+			<result>/WEB-INF/content/${target}.jsp</result>		
+		</action>
+		<action name="*">
+			<result>/WEB-INF/content/{1}.jsp</result>
+		</action>
+		
+		</package>
+</struts>
+	   
